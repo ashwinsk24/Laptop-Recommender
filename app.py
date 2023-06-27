@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import pickle
+import random
 
 laptop = pickle.load(open('model/usecases_list.pkl', 'rb'))
 similarity = pickle.load(open('model/similarity.pkl', 'rb'))
@@ -23,10 +24,17 @@ def recommendmov(use):
 
 app = Flask(__name__)
 
-
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template("index.html")
+    usecase_list = laptop['usecases'].unique()
+ 
+    random_laptops = random.sample(list(laptop.index), 8)  # Select 4 random laptop indices from the dataset
+    laptop_names = [laptop.loc[laptop_index, 'name'] for laptop_index in random_laptops]
+    img_links = [laptop.loc[laptop_index, 'img_link'] for laptop_index in random_laptops]
+ 
+    return render_template("index.html", laptop_names=laptop_names, img_links=img_links, usecase_list=usecase_list)
+
+
 
 
 @app.route("/about")
