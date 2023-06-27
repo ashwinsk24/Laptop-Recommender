@@ -54,7 +54,6 @@
         </div>
       </div>
 
-
       <div class="flex flex-wrap -m-4">
         {% for i in range(8) %}
         <div class="xl:w-1/4 md:w-1/2 p-4">
@@ -62,16 +61,20 @@
             <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{ img_links[i] }}" alt="content">
             <h3 class="tracking-widest text-indigo-400 text-xs font-medium title-font">Laptop</h3>
             <h2 class="text-lg text-white font-medium title-font mb-4">{{ laptop_names[i] }}</h2>
-            <a class="text-indigo-400 inline-flex items-center" href="/product" class="mr-5 hover:text-white">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
+            <form action="/product" method="POST">
+              <input type="hidden" name="laptop_name" value="{{ laptop_names[i] }}">
+              <button type="submit" class="text-indigo-400 inline-flex items-center hover:text-white">Learn More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </form>
           </div>
         </div>
         {% endfor %}
       </div>
+
       <button
         class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><a
           href="/recommend">Find Laptops</a></button>
