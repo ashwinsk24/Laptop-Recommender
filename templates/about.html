@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/static/favicon32.png">
   <title>About</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,9 +14,9 @@
 <body>
   <header class="text-gray-400 bg-gray-900 body-font -my-8">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-        <br>
-        <a href="/" class="href"><span class="ml-3 text-xl">Laptop Recommend</span></a>
+      <a href="/" class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+        <img src="/static/favicon32.png" alt="logo">
+        <span class="ml-3 text-xl">Laptop Recommender</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a href="/" class="mr-5 hover:text-white">Home</a>
@@ -50,37 +51,27 @@
 
   <section class="text-gray-400 bg-gray-900 body-font">
     <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
-      <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
-        src="https://dummyimage.com/720x600">
+      <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="/static/hero1.gif">
       <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Laptop Recommend
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Laptop Recommender
         </h1>
         <p class="mb-8 leading-relaxed">Experience tailored laptop recommendations
           with our mini machine learning project.</p>
-        <div class="flex w-full justify-center items-end">
-          <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-            <label for="hero-field" class="leading-7 text-sm text-gray-400">Search</label>
-            <input type="text" id="hero-field" name="hero-field"
-              class="w-full bg-gray-800 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-          </div>
-          <button
-            class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">-></button>
-        </div>
-        <p class="text-sm mt-2 text-gray-500 mb-8 w-full"></p>
         <div class="flex text-gray-300">
-          <button
-            class="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 512 512">
-              <path
-                d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z">
-              </path>
-            </svg>
-            <span class="ml-4 flex items-start flex-col leading-none"><a href="/recommend">
+          <a href="https://github.com/ashwinsk24/Laptop-Recommender">
+            <button
+              class="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 512 512">
+                <path
+                  d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z">
+                </path>
+              </svg>
+              <span class="ml-4 flex items-start flex-col leading-none">
                 <span class="text-xs text-gray-400 mb-1">FIND MORE ON</span>
                 <span class="title-font font-medium">Github</span>
-            </span>
-            </a>
-          </button>
+              </span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -90,11 +81,7 @@
       class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-            stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-red-500 rounded-full"
-            viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
+          <img src="/static/favicon32.png" alt="logo">
           <span class="ml-3 text-xl">Laptop Recommender</span>
         </a>
         <p class="mt-2 text-sm text-gray-500">Your Personal Laptop Matchmaker</p>
@@ -104,16 +91,16 @@
           <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
           <nav class="list-none mb-10">
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">Category 1</a>
+              <a class="text-gray-400 hover:text-white" href="#">Business</a>
             </li>
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">Category 2</a>
+              <a class="text-gray-400 hover:text-white" href="#">Gaming</a>
             </li>
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">Category 3</a>
+              <a class="text-gray-400 hover:text-white" href="#">Creative/Design</a>
             </li>
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">Category 4</a>
+              <a class="text-gray-400 hover:text-white" href="#">Ultra-portable</a>
             </li>
           </nav>
         </div>
@@ -121,7 +108,7 @@
           <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">ABOUT</h2>
           <nav class="list-none mb-10">
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">About Us</a>
+              <a class="text-gray-400 hover:text-white" href="/about">About Us</a>
             </li>
             <li>
               <a class="text-gray-400 hover:text-white" href="#">How It Works</a>
@@ -130,7 +117,7 @@
               <a class="text-gray-400 hover:text-white" href="#">FAQ</a>
             </li>
             <li>
-              <a class="text-gray-400 hover:text-white" href="#">Contact</a>
+              <a class="text-gray-400 hover:text-white" href="/contact">Contact</a>
             </li>
           </nav>
         </div>
