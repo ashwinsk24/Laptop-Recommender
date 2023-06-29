@@ -5,7 +5,7 @@ MINI PROJECT S6-TEAM 10
 1. [Ashwin Sivasankaran](https://github.com/ashwinsk24) Rollno. 37
 2. [Bimal Dev]( github-link )
 3. [Catherine Jose](https://github.com/cath0806) Rollno. 44
-4. [Farhan Naeem]()
+4. [Farhan Naeem](https://github.com/arunekopsd) Rollno. 52
 
 ## How it Works ?
 
