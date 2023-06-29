@@ -3,9 +3,9 @@ MINI PROJECT S6-TEAM 10
 
 ## Team members
 1. [Ashwin Sivasankaran](https://github.com/ashwinsk24) Rollno. 37
-2. [ your Name]( github-link )
-3. []()
-4. []()
+2. [Bimal Dev]( github-link )
+3. [Catherine Jose]()
+4. [Farhan Naeem]()
 
 ## How it Works ?
 
