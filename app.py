@@ -1,9 +1,25 @@
+from flask import redirect, url_for
+from flask import redirect, session, url_for
+from functools import wraps
 from flask import Flask, request, render_template
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import auth
 import pickle
 import random
 
 laptop = pickle.load(open('model/usecases_list.pkl', 'rb'))
 similarity = pickle.load(open('model/similarity.pkl', 'rb'))
+
+
+def authentication_required(route_function):
+    @wraps(route_function)
+    def wrapper(*args, **kwargs):
+        if 'user' in session:
+            return route_function(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrapper
 
 
 def recommendmov(use):
@@ -26,20 +42,102 @@ def recommendmov(use):
 
 app = Flask(__name__)
 
+cred = credentials.Certificate('auth\laptoprec2023-firebase-adminsdk-gcd2b-298485398f.json')
+firebase_admin.initialize_app(cred)
+
+app.secret_key = 'cred'
+@app.route("/protected", methods=['GET'])
+@authentication_required
+def protected():
+    return "Protected route"
+
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    usecase_list = laptop['usecases'].unique()
+    # Check if the user is authenticated
+    user = None
+    if 'user_id' in session:
+        try:
+            user = auth.get_user(session['user_id'])
+        # User is authenticated, set authenticated to True in the template context
+            authenticated = 'user_id' in session
 
-    # Select 4 random laptop indices from the dataset
+        except auth.AuthError:
+            # Handle error if user not found
+            authenticated = False
+    else:
+        # User is not authenticated, set authenticated to False in the template context
+        authenticated = False
+
+    usecase_list = laptop['usecases'].unique()
+    # Select 8 random laptop indices from the dataset
     random_laptops = random.sample(list(laptop.index), 8)
     laptop_names = [laptop.loc[laptop_index, 'name']
                     for laptop_index in random_laptops]
     img_links = [laptop.loc[laptop_index, 'img_link']
                  for laptop_index in random_laptops]
 
-    return render_template("index.html", laptop_names=laptop_names, img_links=img_links, usecase_list=usecase_list)
+    return render_template("index.html", user=user, authenticated=authenticated, laptop_names=laptop_names, img_links=img_links, usecase_list=usecase_list)
 
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        try:
+            user = auth.create_user(email=email, password=password)
+            # User registration successful
+            session['user_id'] = user.uid
+            return redirect('/')  # Redirect to index.html
+        except firebase_admin.auth.EmailAlreadyExistsError:
+            # Handle case where the email already exists
+            return "Email already exists"
+        except Exception as e:
+            # Handle other registration errors
+            return str(e)
+    else:
+        return render_template("register.html")
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        try:
+            user = auth.get_user_by_email(email)
+            # Authenticate the user
+            # You can use user.uid or user.email to identify the authenticated user in your application
+            session['user_id'] = user.uid
+            return redirect('/')
+        except firebase_admin.auth.UserNotFoundError:
+            # Handle case where the user is not found
+            return "User not found"
+        except Exception as e:
+            # Handle other login errors
+            return str(e)
+    else:
+        return render_template("login.html")
+
+
+@app.route("/favourites")
+@authentication_required
+def favourites():
+    if 'favourites' in session:
+        favourites = session['favourites']
+        laptop_details = []
+        for laptop_name in favourites:
+            laptop_data = laptop.loc[laptop['name'].str.lower() == laptop_name.lower()].iloc[0]
+            laptop_details.append(laptop_data)
+        return render_template("favourites.html", laptop_details=laptop_details)
+    else:
+        return render_template("favourites.html", laptop_details=[])
+
+@app.route("/logout")
+def logout():
+    session.pop('user_id', None)
+    return redirect('/')
 
 @app.route("/about")
 def about():
@@ -47,6 +145,7 @@ def about():
 
 
 @app.route("/contact")
+@authentication_required
 def contact():
     return render_template("contact.html")
 
