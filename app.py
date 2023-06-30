@@ -122,7 +122,7 @@ def login():
 
 
 @app.route("/favourites")
-@authentication_required
+#@authentication_required
 def favourites():
     if 'favourites' in session:
         favourites = session['favourites']
@@ -145,7 +145,6 @@ def about():
 
 
 @app.route("/contact")
-@authentication_required
 def contact():
     return render_template("contact.html")
 
